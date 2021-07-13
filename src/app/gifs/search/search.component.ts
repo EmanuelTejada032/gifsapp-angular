@@ -15,12 +15,12 @@ export class SearchComponent {
 
   search(){
     const value = this.searchBox.nativeElement.value
-    if(value){
-      this.gifsservice.addGifs(value);
-      this.searchBox.nativeElement.value = "";
-    }else{
+    if(value.trim().length === 0){
       return;
     }
+      this.gifsservice.addGifs(value);
+      this.searchBox.nativeElement.value = "";
+   
   }
 
 }

@@ -3,7 +3,7 @@
     <h4>Gifs - App</h4>
     <hr>
     <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action my-1" *ngFor="let item of history ">{{item}}</a>
+      <a href="#" class="list-group-item list-group-item-action my-1" *ngFor="let item of history ">{{item | titlecase}}</a> <!-- Pipe for capitalizing -->
     </div>
 </div>
 
