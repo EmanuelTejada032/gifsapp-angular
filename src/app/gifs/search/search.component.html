@@ -2,4 +2,4 @@
 
 
 <h3>Search: </h3>
-<input type="search" placeholder="Search" class="form-control">
+ <input type="search" placeholder="Search" class="form-control" (keyup.enter)="search()" #searchBox> <!-- Reference to the html  -->

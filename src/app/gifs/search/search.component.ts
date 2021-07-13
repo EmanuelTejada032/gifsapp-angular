@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
+  //view child takes a reference on the html, could be tags, classes or # local Reference
+  @ViewChild('searchBox') searchBox!: ElementRef<HTMLInputElement>; //non null assertion opperator, It says to typescript the elements will never be null
 
-  constructor() { }
-
-  ngOnInit(): void {
+  search(){
+    const value = this.searchBox.nativeElement
+    this.searchBox.nativeElement.value = "";
+    
   }
 
 }
