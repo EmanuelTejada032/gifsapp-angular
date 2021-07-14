@@ -1,6 +1,6 @@
 
 <div class="row">
-    <div class="card m-3" style="width: 18rem;" *ngFor="let gif of gifsResults">
+    <div class="card m-3 animate__animated animate__fadeIn" style="width: 18rem;" *ngFor="let gif of gifsResults">
     <img [src]="gif.images.downsized_medium.url" class="card-img-top" [alt]="gif.title">
     <div class="card-body">
       <h5 class="card-title">{{gif.title}}}</h5>
