@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Gif, GifsSearchResponse } from '../interface/gifs.interface';
 
@@ -9,6 +9,8 @@ import { Gif, GifsSearchResponse } from '../interface/gifs.interface';
 export class GifsService {
 
   private _history: string[] = [];
+  private _api_key: string = "sRYMDEom54Yx0YpoZn5TnuAm7XlvUnXJ"
+  private _apiBaseUrl: string = "https://api.giphy.com/v1/gifs"
   public gifsResults: Gif[] = [];
   public lastResults: Gif[] = [];
   
@@ -31,8 +33,13 @@ export class GifsService {
           
       }
 
+      const params = new HttpParams()
+                        .set("api_key", this._api_key)
+                        .set("limit", "10")
+                        .set("q", query)
+
       //http module from angular return an observable, offers more functinality than fetch
-      this.http.get<GifsSearchResponse>(`https://api.giphy.com/v1/gifs/search?api_key=sRYMDEom54Yx0YpoZn5TnuAm7XlvUnXJ&q=${query}&limit=10&lang=en`) //Return a gifsSearchResponse interface
+      this.http.get<GifsSearchResponse>(`${this._apiBaseUrl}/search`, {params}) //Return a gifsSearchResponse interface
       .subscribe( (res) => {
           console.log(res.data);
           this.gifsResults = res.data;
