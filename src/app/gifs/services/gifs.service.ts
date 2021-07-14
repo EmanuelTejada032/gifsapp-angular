@@ -10,17 +10,16 @@ export class GifsService {
 
   private _history: string[] = [];
   public gifsResults: Gif[] = [];
+  public lastResults: Gif[] = [];
+  
 
   get history(): string[] {
     return [...this._history];
   }
 
   constructor( private http: HttpClient) {
-    const localData = localStorage.getItem("history")
-    if(localData){
-      this._history = JSON.parse(localData!)
-    }
-      
+    this._history = JSON.parse(localStorage.getItem("history")!) || [];
+    this.gifsResults = JSON.parse(localStorage.getItem("lastResults")!) || [];
   }
 
   addGifs(query: string): void{
@@ -37,6 +36,7 @@ export class GifsService {
       .subscribe( (res) => {
           console.log(res.data);
           this.gifsResults = res.data;
+          localStorage.setItem("lastResults",JSON.stringify(this.gifsResults))
           
       })
   }
